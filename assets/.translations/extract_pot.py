@@ -45,7 +45,7 @@ with open(json_path, "r") as json_file:
         for asset_type in asset_db[pack]:
             for asset in asset_db[pack][asset_type]:
                 asset_name = asset["name"]
-                loc = "../{}/{}/{}".format(pack, asset_type, asset_name)
+                loc = f"../{pack}/{asset_type}/{asset_name}"
                 loc = loc.replace(" ", "_")
 
                 key_index = 0
@@ -53,7 +53,7 @@ with open(json_path, "r") as json_file:
                     value = asset[key]
                     if len(value) == 0:
                         continue
-                    
+
                     key_index += 1
                     occurrence = (loc, str(key_index))
 
@@ -67,6 +67,6 @@ with open(json_path, "r") as json_file:
                         pot_file.append(entry)
                     else:
                         entry.occurrences.append(occurrence)
-    
+
     pot_file.save("asset_pack.pot")
     print("asset_pack.pot")
